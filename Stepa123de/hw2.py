@@ -53,5 +53,3 @@ class Array(object):
 	#print(object)
 	def __str__(self):
 		return str(self._data);
-
-print(Array(1,2,3) + Array(3,2,1))
