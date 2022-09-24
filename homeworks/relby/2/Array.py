@@ -44,7 +44,7 @@ class Array(MutableSequence[T], Generic[T]):
         start = start or 0
         stop  = stop  or len(self)
         try:
-            return self._data.index(value)
+            return self._data.index(value, start, stop)
         except ValueError:
             return -1
 
