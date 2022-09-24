@@ -4,10 +4,15 @@ T = TypeVar("T")
 
 # TODO: Replace explicit type annotation of Array with Self when python 3.11 release comes out
 
-
 class Array(Generic[T]):
     def __init__(self, *args: T) -> None:
         self._data: tuple[T, ...] = args
+
+    @classmethod
+    def from_iterable(cls, iterable: Iterable[T]) -> "Array[T]":
+        if isinstance(iterable, Iterable):
+            return Array[T](*iterable)
+        raise TypeError(f"Array can only be created with iterable object")
 
     # Modification methods
     def append(self, value: T) -> None:
@@ -144,7 +149,7 @@ class Array(Generic[T]):
         return "[{0}]".format(", ".join(map(repr, self._data)))
 
     def __repr__(self) -> str:
-        types = " | ".join({type(x).__name__ for x in self._data})
+        types = " | ".join({x.__class__.__name__ for x in self._data})
         return "{0}[{1}](data={2})".format(
             self.__class__.__name__,
             types,
