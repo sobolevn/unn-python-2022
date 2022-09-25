@@ -21,7 +21,7 @@ class Array(MutableSequence[T], Generic[T]):
         self._data += (value,)
 
     def insert(self, index: SupportsIndex, value: T) -> None:
-        self._data = self._data[int(index):] + (value,) + self._data[int(index):]
+        self._data = self._data[:int(index)] + (value,) + self._data[int(index):]
 
     def remove(self, value: T) -> None:
         index = self.index(value)
@@ -39,10 +39,10 @@ class Array(MutableSequence[T], Generic[T]):
         start: SupportsIndex | None = None,
         stop:  SupportsIndex | None = None,
     ) -> int:
+        if start is None: start = 0
+        if stop  is None: stop  = len(self)
         if not isinstance(start, SupportsIndex) or not isinstance(stop, SupportsIndex):
             raise TypeError('slice indices must be integers or have an __index__ method')
-        start = start or 0
-        stop  = stop  or len(self)
         try:
             return self._data.index(value, start, stop)
         except ValueError:
