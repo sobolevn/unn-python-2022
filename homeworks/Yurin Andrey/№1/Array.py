@@ -22,7 +22,7 @@ class Array(object):
 
     def __getitem__(self, item: int):
         if not isinstance(item, int):
-            print(f"Error, expected type Array (type {item} is {type(item)})")
+            print(f"Error, expected type int (type {item} is {type(item)})")
         elif item < -len(self._data) or item >= len(self._data):
             print("Error,index out of range")
         else:
@@ -31,7 +31,7 @@ class Array(object):
 
     def __setitem__(self, key: int, value):
         if not isinstance(key, int):
-            print(f"Error, expected type Array (type {key} is {type(key)})")
+            print(f"Error, expected type int (type {key} is {type(key)})")
             return
 
         if key < 0:
