@@ -48,7 +48,8 @@ class Array(object):
         return self.arr[key]
 
     def __setitem__(self, key, value):
-        self.arr[key] = value
+        if type(value) == int or type(value) == float:
+            self.arr[key] = value
 
 
 a = Array(1, 2, '4', 6) + Array('100') + '87' + 4
