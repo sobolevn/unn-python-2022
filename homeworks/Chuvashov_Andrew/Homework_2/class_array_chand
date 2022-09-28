@@ -1,0 +1,45 @@
+class Array(object):
+    def __init__(self, *args):
+        self._data = tuple(args)
+
+    def __add__(self, obj):
+        return tuple(self._data + obj._data)
+
+    def __len__(self):
+        return len(self._data)
+
+    def __getitem__(self, ind):
+        if len(self._data) > ind >= -len(self._data):
+            return self._data[ind]
+        else:
+            print("Invalid index")
+
+    def index(self, item):
+        try:
+            return self._data.index(item)
+        except ValueError:
+            return -1
+
+    def append(self, item):
+        self._data += (item,)
+
+    def __iter__(self):
+        return iter(self._data)
+
+example = Array(1, 2, 3, 4, 5, 6, 7)
+
+print(len(example))
+
+for _ in example:
+    print(_)
+
+print(example[4])
+
+print(example.index(2))
+print(example.index(8))
+
+added_example = Array(8, 9, 10)
+print(len(example + added_example))
+
+example.append(8)
+print(len(example))
