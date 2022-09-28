@@ -1,0 +1,48 @@
+class Array(object):
+    def __init__(self, *args):
+        self._data = args
+
+    def __len__(self):
+        return len(self._data)
+
+    def append(self, s):
+        self._data+=(s, )
+
+    def __add__(self, a):
+        self._data+= a._data
+
+    def GetArray(self):
+        print(self._data)
+
+    def index(self, a):
+        if (a in self._data):
+          return self._data.index(a)
+        else: return (-1)
+
+    def __iter__(self):
+        i = iter(self._data)
+        return i
+
+    def __getitem__(self, i):
+        return (self._data[i])
+
+         
+
+print (len(Array()))
+print(len (Array(1,2,3)))
+
+c = Array(1,2,3,4)
+c.append(5)
+
+d= Array(6,7,8)
+print (len(c))
+
+c + d
+print (len(c))
+c.GetArray()
+print(c.index(3))
+
+for element in Array(1, 2, 3):
+    print (element)
+
+print (d[1])
