@@ -21,3 +21,7 @@ def solve():
         else:
             print("Неверный ответ.")
     print(f"Набрано баллов : {counter}/{len(ans)}")
+
+
+if __name__ == "__main__":
+    solve()

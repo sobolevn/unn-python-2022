@@ -14,7 +14,7 @@ class Array:
 
     def __add__(self, other):
         return Array(*(self._data + other._data))
-    
+
     def __len__(self):
         return len(self._data)
 
@@ -25,11 +25,10 @@ class Array:
         return -1
 
     def __iter__(self):
-        self._iterator = iter(self._data)
-        return self._iterator
+        return iter(self._data)
 
     def __next__(self):
-        return next(self._iterator)
+        return next(self._data)
 
     def __getitem__(self, index):
         return self._data[index]
