@@ -59,7 +59,7 @@ def contract(
 
             if func_result is None:
                 func_result = func(*args)
-            if not issubclass(return_type, type(func_result)):
+            if not issubclass(type(func_result), return_type):
                 raise ContractError('Return type does not match')
             return func_result
 
@@ -85,17 +85,8 @@ def divide(first, second):
 @contract(arg_types=(str, str), return_type=str)
 def concat(first, second):
     "This function concatenate two strings"
-    print('You called me 2')
     return first + second
 
-
-if __name__ == '__main__':
-    print(divide(1, 2))
-    try:
-        divide(1, 0)
-    except ZeroDivisionError as ex:
-        print('Caught `{0}`'.format(ex))
-    try:
-        divide(2.1, 1)
-    except ContractError as ex:
-        print('Caught `{0}`'.format(ex))
+@contract(arg_types=(Any,), return_type=int, raises=(ValueError, TypeError))
+def to_int(obj):
+    return int(obj)
