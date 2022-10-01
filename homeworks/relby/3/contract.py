@@ -59,7 +59,7 @@ def contract(
 
             if func_result is None:
                 func_result = func(*args)
-            if not issubclass(type(func_result), return_type):
+            if not isinstance(func_result, return_type):
                 raise ContractError('Return type does not match')
             return func_result
 
