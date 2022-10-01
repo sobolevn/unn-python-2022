@@ -38,7 +38,7 @@ def contract(
 
         def handle_raises(args):
             if raises is None:
-                return
+                return None
 
             try:
                 func_result = func(*args)
@@ -55,7 +55,7 @@ def contract(
 
         def handle_return_type(func_result, args):
             if return_type is None:
-                return
+                return None
 
             if func_result is None:
                 func_result = func(*args)
