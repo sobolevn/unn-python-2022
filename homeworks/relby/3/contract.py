@@ -35,7 +35,7 @@ def contract(
             for arg, arg_type in zip(args, arg_types):
                 if not isinstance(arg, arg_type):
                     raise ContractError('Args types do not match')
-        
+
         def handle_raises(args):
             if raises is None:
                 return
@@ -52,7 +52,7 @@ def contract(
                     ) from ex
                 raise ex
             return func_result
-        
+
         def handle_return_type(func_result, args):
             if return_type is None:
                 return
@@ -62,7 +62,6 @@ def contract(
             if not issubclass(type(func_result), return_type):
                 raise ContractError('Return type does not match')
             return func_result
-
 
         @wraps(func)
         def wrapper(*args, **kwargs):

@@ -2,6 +2,7 @@ import pytest
 
 from contract import Any, ContractError, contract
 
+
 @contract(
     arg_types=(int, int, int),
     return_type=float,
@@ -44,5 +45,3 @@ def test_in_raises2():
 def test_not_in_raises():
     with pytest.raises(ContractError):
         to_int({})
-
-
