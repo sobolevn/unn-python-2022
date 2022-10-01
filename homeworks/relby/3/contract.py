@@ -75,18 +75,3 @@ def contract(
             return func_result
         return wrapper
     return _contract
-
-
-@contract(arg_types=(int, int), return_type=float, raises=(ZeroDivisionError,))
-def divide(first, second):
-    "This function divides two ints"
-    return first / second
-
-@contract(arg_types=(str, str), return_type=str)
-def concat(first, second):
-    "This function concatenate two strings"
-    return first + second
-
-@contract(arg_types=(Any,), return_type=int, raises=(ValueError, TypeError))
-def to_int(obj):
-    return int(obj)
