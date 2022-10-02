@@ -1,14 +1,10 @@
-
-
 class ContractError(Exception):
-    """Класс исключений при несоответсвие значений типа аргумента и необходимого"""
     def __init__(self,*args):
         self.messege = args[0] if args else None
 
     def __str__(self):
         return f"Mistake: {self.messege}"
 
-#: Special value, that indicates that validation for this type is not required.
 Any = object()
 
 def contract(arg_types=None, return_type=None, raises=None):
@@ -35,6 +31,3 @@ def contract(arg_types=None, return_type=None, raises=None):
 @contract(arg_types=(int, int), return_type=float, raises=(NameError,))
 def sum(first, second):
     return first / second
-
-
-print(sum(0,0))
