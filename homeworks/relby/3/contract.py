@@ -42,15 +42,12 @@ def contract(
 
             try:
                 func_result = func(*args)
-            except Exception as ex:
-                is_exception_in_raises = any(
-                    (isinstance(ex, raising_ex) for raising_ex in raises),
-                )
-                if not is_exception_in_raises:
-                    raise ContractError(
-                        '`{0}` is not in raises'.format(type(ex).__name__),
-                    ) from ex
+            except raises as ex:
                 raise ex
+            except Exception as ex:
+                raise ContractError(
+                    '`{0}` is not in raises'.format(type(ex).__name__),
+                ) from ex
             return func_result
 
         def handle_return_type(func_result, args):
