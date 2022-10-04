@@ -5,7 +5,6 @@ class ContractError(Exception):
 #: Special value, that indicates that validation for this type is not required.
 Any = object()
 
-
 def contract(arg_types=None, return_type=None, raises=None):
     def decorator(function):
         def inner(*args, **kwargs):
@@ -15,15 +14,16 @@ def contract(arg_types=None, return_type=None, raises=None):
                     if arg_types[i] is not Any:
                         if not isinstance(this_args[i], arg_types[i]):
                             raise ContractError('Argument: not that type')
-            if return_type is not None:
-                if not isinstance(function(*args, **kwargs), return_type):
-                    raise ContractError("Return: not that type")
             try:
                 result = function(*args, **kwargs)
             except (Exception if raises is None or Any in raises else raises) as error:
                 raise error
             except Exception as ex:
                 raise ContractError from ex
+
+            if return_type is not None:
+                if not isinstance(function(*args, **kwargs), return_type):
+                    raise ContractError("Return: not that type")
 
             return result
         return inner
@@ -33,7 +33,7 @@ def contract(arg_types=None, return_type=None, raises=None):
 
 
 #checking
-@contract(arg_types=(int, float), return_type=int, raises=(ContractError, ))
+@contract(arg_types=(int, int), return_type=float, raises=(ContractError, ))
 def add_two_numbers(first, second):
     return first + second
 
