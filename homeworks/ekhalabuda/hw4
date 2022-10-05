@@ -1,0 +1,52 @@
+""" Халабуда Елизавета hw4"""
+class ContractError(Exception):
+    """We use this error when someone breaks our contract"""
+    pass
+
+#: Special value, that indicates that validation for this type is not required.
+Any = object()
+
+def contract(arg_types=None, return_type=None, raises=None):
+    answer=None
+    def decorator(func):
+        def inner(*args):
+            nonlocal answer
+            if arg_types is not None:
+                if len(args)!=len(arg_types):
+                    raise ContractError('Invalid number of arguments')
+                else:
+                    for ind,argument in enumerate(args):
+                        if not isinstance(argument,arg_types):
+                            raise ContractError('Incorrect argument type')
+            if raises is not None and arg_types is not None:
+                try:
+                    answer=func(*args)
+                except Exception as er:
+                    if er in raises:
+                        raise er
+                except Exception as er:
+                    raise ContractError('There is no such error in this list') from er
+            else:
+                answer=func(*args)
+            if return_type is not None:
+                if isinstance(answer, return_type):
+                    return inner
+                else:
+                    raise ContractError("Incorrect type returned by the function")
+
+            return answer
+
+        return inner
+
+    return decorator
+
+
+
+
+
+
+
+@contract(arg_types=(int, Any), return_type=int, raises=(ArithmeticError,))
+def add(a,b):
+    return a/b
+print(add(2,1))
