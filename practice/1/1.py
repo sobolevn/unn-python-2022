@@ -112,7 +112,6 @@ def main():
         print_field(map)
     pass
 
-
 if __name__ == '__main__':
     # See what this means:
     # http://stackoverflow.com/questions/419163/what-does-if-name-main-do
