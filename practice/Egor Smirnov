@@ -1,0 +1,87 @@
+import random
+
+EMPTY_MARK = 'x'
+
+MOVES = {
+    'w': -4,
+    's': 4,
+    'a': -1,
+    'd': 1,
+}
+
+RIGHT = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, EMPTY_MARK]
+
+
+def shuffle_field():
+
+    field = RIGHT.copy()
+    for i in list(range(100)):
+        shuffle = random.randint(0, 3)
+        key = list(MOVES.keys())[shuffle]
+        try:
+            perform_move(field, key)
+        except IndexError:
+            pass
+    return field
+    pass
+
+
+def print_field(field):
+
+    for i in list(range(16)):
+        if field[i] == EMPTY_MARK or field[i] < 10:
+            print(' ', end = '')
+        print(field[i], end = '')
+        if (i + 1) % 4 == 0:
+            print('\n')
+        else:
+            print(' ', end = '')
+    pass
+
+
+def is_game_finished(field):
+
+    if field == RIGHT:
+        print('Победа')
+        return True
+    else:
+        return False
+    pass
+
+
+def perform_move(field, key):
+
+    empty_index = field.index(EMPTY_MARK)
+    move = MOVES[key]
+    target_index = empty_index + move #
+    if target_index < 0 or target_index >= len(field) or (empty_index % 4 == 0 and empty_index - target_index == 1) or (target_index % 4 == 0 and target_index - empty_index == 1):
+        raise IndexError("Невозможный ход")
+    else:
+        field[empty_index] = field[target_index]
+        field[target_index] = EMPTY_MARK
+    pass
+
+
+def handle_user_input():
+    key = ''
+    while key not in MOVES:
+        key = input('Ход')
+    return key
+    pass
+
+
+def main():
+    field = shuffle_field()
+    while not is_game_finished(field):
+        print_field(field)
+        key = handle_user_input()
+        try:
+            perform_move(field, key)
+        except IndexError as ex:
+            print(str(ex))
+
+    pass
+
+
+if __name__ == '__main__':
+    main()
