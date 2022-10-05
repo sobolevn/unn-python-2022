@@ -1,4 +1,3 @@
-
 class ContractError(Exception):
     pass
     """We use this error when someone breaks our contract."""
@@ -6,6 +5,7 @@ class ContractError(Exception):
 
 #: Special value, that indicates that validation for this type is not required.
 Any = object()
+
 
 def contract(arg_types=None, return_type=None, raises=None):
     def decorator(function):
