@@ -3,7 +3,7 @@ class BaseItem(object):
         self.heading = heading
         self.done = False  # TODO: make sure we can use it...
 
-    def __repr__(self):
+    def __str__(self):
         return self.__class__.__name__
 
     @classmethod
@@ -14,7 +14,7 @@ class BaseItem(object):
 class ToDoItem(BaseItem):
     def __str__(self):
         return '{0}: {1}'.format(
-            super().__str__(self),
+            super().__str__(),
             self.heading,
         )
 
@@ -31,7 +31,7 @@ class ToBuyItem(BaseItem):
 
     def __str__(self):
         return '{0}: {1} for {2}'.format(
-            super().__str__(self),
+            super().__str__(),
             self.heading,
             self.price,
         )
