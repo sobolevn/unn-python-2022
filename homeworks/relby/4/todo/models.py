@@ -39,5 +39,14 @@ class ToBuyItem(BaseItem):
     @classmethod
     def construct(cls):
         heading = input('Input heading: ')
-        price = input('Input price: ')
+        while True:
+            try:
+                price = int(input('Input price: '))
+            except ValueError:
+                print('Price must be an integer')
+            else:
+                if price >= 0:
+                    break
+                print("Price can't be negative")
+            
         return cls(heading, price)
