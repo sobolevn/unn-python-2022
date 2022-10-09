@@ -1,4 +1,3 @@
-
 from todo.custom_exceptions import UserExitException
 from todo.models import BaseItem
 from todo.reflection import find_classes
@@ -7,26 +6,22 @@ from todo.reflection import find_classes
 class BaseCommand(object):
     label: str
 
-    def perform(self, store):
+    def perform(self, _storage):
         raise NotImplementedError()
 
 
 class ListCommand(BaseCommand):
     label = 'list'
 
-    def perform(self, store):
-        if len(store.items) == 0:
-            print('There are no items in the storage.')
-            return
-
-        for index, obj in enumerate(store.items):
-            print('{0}: {1}'.format(index, str(obj)))
+    def perform(self, storage):
+        storage.print()
+        print()
 
 
 class NewCommand(BaseCommand):
     label = 'new'
 
-    def perform(self, store):
+    def perform(self, storage):
         classes = self._load_item_classes()
 
         print('Select item type:')
@@ -48,13 +43,13 @@ class NewCommand(BaseCommand):
 
         selected_class = classes[selected_key]
         print('Selected: {0}'.format(selected_class.__name__))
-        print()
 
         new_object = selected_class.construct()
 
-        store.items.append(new_object)
+        storage.items.append(new_object)
         print('Added {0}'.format(str(new_object)))
         print()
+
         return new_object
 
     def _load_item_classes(self) -> dict:
@@ -68,8 +63,39 @@ class NewCommand(BaseCommand):
         return list(classes.keys())[selection]
 
 
+class DoneCommand(BaseCommand):
+    label = 'done'
+
+    def perform(self, storage):
+
+        storage.print()
+        if storage.is_empty():
+            return
+
+        selected_item = None
+        while True:
+            try:
+                selected_item = self._select_item(storage)
+            except ValueError:
+                print('Bad input, try again.')
+            except IndexError:
+                print('Wrong index, try again.')
+            else:
+                break
+
+        print('{0} has been marked done'.format(selected_item))
+        print()
+        selected_item.mark_done();
+
+    def _select_item(self, storage):
+        selection = int(input('Choose number of item: '))
+        if selection < 0:
+            raise IndexError('Index needs to be >0')
+        return storage.items[selection]
+
+
 class ExitCommand(BaseCommand):
     label = 'exit'
 
-    def perform(self, _store):
+    def perform(self, _storage):
         raise UserExitException('See you next time!')

@@ -19,3 +19,14 @@ class Storage(object):  # storage = Storge()
             cls.obj = object.__new__(cls)
             cls.items = []
         return cls.obj
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def print(self):
+        if self.is_empty():
+            print('There are no items in the storage.')
+            return
+
+        for index, obj in enumerate(self.items):
+            print('{0}: {1}'.format(index, str(obj)))

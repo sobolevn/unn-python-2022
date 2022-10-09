@@ -1,10 +1,22 @@
 class BaseItem(object):
     def __init__(self, heading):
         self.heading = heading
-        self.done = False  # TODO: make sure we can use it...
+        self.done: bool = False
+
+    def get_class_name(self):
+        return self.__class__.__name__[:-4]
 
     def __str__(self):
-        return self.__class__.__name__
+        return '{0} {1}'.format(
+            '+' if self.done else '-',
+            self.get_class_name(),
+        )
+
+    def mark_done(self):
+        self.done = True
+
+    def mark_undone(self):
+        self.done = False
 
     @classmethod
     def construct(cls):
