@@ -70,6 +70,7 @@ class DoneCommand(BaseCommand):
 
         storage.print()
         if storage.is_empty():
+            print()
             return
 
         selected_item = None
@@ -86,6 +87,37 @@ class DoneCommand(BaseCommand):
         print('{0} has been marked done'.format(selected_item))
         print()
         selected_item.mark_done();
+
+    def _select_item(self, storage):
+        selection = int(input('Choose number of item: '))
+        if selection < 0:
+            raise IndexError('Index needs to be >0')
+        return storage.items[selection]
+
+
+class UndoneCommand(BaseCommand):
+    label = 'undone'
+
+    def perform(self, storage):
+
+        storage.print()
+        if storage.is_empty():
+            return
+
+        selected_item = None
+        while True:
+            try:
+                selected_item = self._select_item(storage)
+            except ValueError:
+                print('Bad input, try again.')
+            except IndexError:
+                print('Wrong index, try again.')
+            else:
+                break
+
+        print('{0} has been marked done'.format(selected_item))
+        print()
+        selected_item.mark_undone();
 
     def _select_item(self, storage):
         selection = int(input('Choose number of item: '))
