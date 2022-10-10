@@ -60,7 +60,7 @@ class ToBuyItem(BaseItem):
                 if price >= 0:
                     break
                 print("Price can't be negative")
-            
+
         return cls(heading, price)
 
 

@@ -85,7 +85,7 @@ class DoneCommand(BaseCommand):
 
         print('{0} has been marked done'.format(selected_item))
         print()
-        selected_item.mark_done();
+        selected_item.mark_done()
 
     def _select_item(self, storage):
         selection = int(input('Choose number of item: '))
@@ -116,7 +116,7 @@ class UndoneCommand(BaseCommand):
 
         print('{0} has been marked done'.format(selected_item))
         print()
-        selected_item.mark_undone();
+        selected_item.mark_undone()
 
     def _select_item(self, storage):
         selection = int(input('Choose number of item: '))
