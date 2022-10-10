@@ -28,7 +28,6 @@ class NewCommand(BaseCommand):
         for index, name in enumerate(classes.keys()):
             print('{0}: {1}'.format(index, name))
 
-        selection = None
         selected_key = None
 
         while True:

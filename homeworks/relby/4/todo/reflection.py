@@ -2,7 +2,7 @@ import inspect
 import sys
 
 
-def find_classes(base_class) -> tuple:
+def find_classes(base_class) -> list[tuple[str, type]]:
     """
     Finds all subclasses of a class inside module.
 
