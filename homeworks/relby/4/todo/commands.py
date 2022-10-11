@@ -1,19 +1,22 @@
-from todo.custom_exceptions import UserExitException
+from typing import Literal
+
+from todo.custom_exceptions import UnitializedStorage, UserExitException
 from todo.models import BaseItem
 from todo.reflection import find_classes
+from todo.storage import Storage
 
 
 class BaseCommand(object):
     label: str
 
-    def perform(self, _storage):
+    def perform(self, _storage: Storage) -> None:
         raise NotImplementedError()
 
 
 class ListCommand(BaseCommand):
     label = 'list'
 
-    def perform(self, storage):
+    def perform(self, storage: Storage) -> None:
         storage.print()
         print()
 
@@ -21,7 +24,7 @@ class ListCommand(BaseCommand):
 class NewCommand(BaseCommand):
     label = 'new'
 
-    def perform(self, storage):
+    def perform(self, storage: Storage) -> None:
         classes = self._load_item_classes()
 
         print('Select item type:')
@@ -45,6 +48,9 @@ class NewCommand(BaseCommand):
 
         new_object = selected_class.construct()
 
+        if storage.items is None:
+            raise UnitializedStorage
+
         storage.items.append(new_object)
         print('Added {0}'.format(str(new_object)))
         print()
@@ -62,71 +68,53 @@ class NewCommand(BaseCommand):
         return list(classes.keys())[selection]
 
 
-class DoneCommand(BaseCommand):
-    label = 'done'
+class BaseMarkCommand(object):
+    operation = Literal['mark_done', 'mark_undone']
 
-    def perform(self, storage):
-
+    def perform(self, storage: Storage) -> None:
         storage.print()
         if storage.is_empty():
             print()
             return
 
-        selected_item = None
+        selected_item = self._select_item(storage)
+
+        print('{0} has been marked done'.format(selected_item))
+        print()
+
+        operation = getattr(selected_item, str(self.operation), None)
+        assert operation is not None
+        operation()
+
+    def _select_item(self, storage: Storage) -> BaseItem:
         while True:
             try:
-                selected_item = self._select_item(storage)
+                selection = int(input('Choose number of item: '))
+                if selection < 0:
+                    raise IndexError('asdf')
             except ValueError:
                 print('Bad input, try again.')
             except IndexError:
                 print('Wrong index, try again.')
             else:
                 break
-
-        print('{0} has been marked done'.format(selected_item))
-        print()
-        selected_item.mark_done()
-
-    def _select_item(self, storage):
-        selection = int(input('Choose number of item: '))
-        if selection < 0:
-            raise IndexError('Index needs to be >0')
+        if storage.items is None:
+            raise UnitializedStorage
         return storage.items[selection]
 
 
-class UndoneCommand(BaseCommand):
+class DoneCommand(BaseMarkCommand, BaseCommand):
+    label = 'done'
+    operation = 'mark_done'
+
+
+class UndoneCommand(BaseMarkCommand, BaseCommand):
     label = 'undone'
-
-    def perform(self, storage):
-
-        storage.print()
-        if storage.is_empty():
-            return
-
-        selected_item = None
-        while True:
-            try:
-                selected_item = self._select_item(storage)
-            except ValueError:
-                print('Bad input, try again.')
-            except IndexError:
-                print('Wrong index, try again.')
-            else:
-                break
-
-        print('{0} has been marked done'.format(selected_item))
-        print()
-        selected_item.mark_undone()
-
-    def _select_item(self, storage):
-        selection = int(input('Choose number of item: '))
-        if selection < 0:
-            raise IndexError('Index needs to be >0')
-        return storage.items[selection]
+    operation = 'mark_undone'
 
 
 class ExitCommand(BaseCommand):
     label = 'exit'
 
-    def perform(self, _storage):
+    def perform(self, _storage: Storage) -> None:
         raise UserExitException('See you next time!')
