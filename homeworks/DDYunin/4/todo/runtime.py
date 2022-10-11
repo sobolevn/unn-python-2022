@@ -33,7 +33,7 @@ def perform_command(command: str) -> None:
 
     command_inst = command_class()
     storage = Storage()
-
+    # storage.__new__()
     try:
         command_inst.perform(storage)
     except UserExitException as ex:
