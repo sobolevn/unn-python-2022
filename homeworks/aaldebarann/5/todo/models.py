@@ -1,7 +1,7 @@
 class BaseItem(object):
     def __init__(self, heading):
         self.heading = heading
-        self.done = False  # TODO: make sure we can use it...
+        self.done = False
 
     def __repr__(self):
         return self.__class__.__name__
@@ -13,9 +13,10 @@ class BaseItem(object):
 
 class ToDoItem(BaseItem):
     def __str__(self):
-        return '{0}: {1}'.format(
-            super().__str__(),
-            self.heading,
+        return '{0} {1}: {2}'.format(
+            '+' if self.done else '-',
+            super().__str__().removesuffix('Item'),  # remove suffix 'Item' to see 'ToDo: ...'
+            self.heading
         )
 
     @classmethod
@@ -30,10 +31,11 @@ class ToBuyItem(BaseItem):
         self.price = price
 
     def __str__(self):
-        return '{0}: {1} for {2}'.format(
-            super().__str__(),
+        return '{0} {1}: {2} for {3}'.format(
+            '+' if self.done else '-',
+            super().__str__().removesuffix('Item'),  # remove suffix 'Item' to see 'ToBuy: ...'
             self.heading,
-            self.price,
+            self.price
         )
 
     @classmethod
@@ -49,8 +51,9 @@ class ToReadItem(BaseItem):
         self.url = url
 
     def __str__(self):
-        return '{0}: {1} for {2}'.format(
-            super().__str__(),
+        return '{0} {1}: {2} for {3}'.format(
+            '+' if self.done else '-',
+            super().__str__().removesuffix('Item'),  # remove suffix 'Item' to see 'ToRead: ...'
             self.heading,
             self.url,
         )

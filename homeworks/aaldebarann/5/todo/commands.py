@@ -20,10 +20,7 @@ class ListCommand(BaseCommand):
             return
 
         for index, obj in enumerate(store.items):
-            done_indicator = '-'
-            if(obj.done):
-                done_indicator = '+'
-            print('{0} {1}: {2}'.format(done_indicator, index, str(obj)))
+            print('{0}: {1}'.format(index, str(obj)))
 
 
 class NewCommand(BaseCommand):
