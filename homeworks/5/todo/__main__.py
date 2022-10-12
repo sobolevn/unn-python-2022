@@ -1,9 +1,8 @@
 """
 Main file. Contains program execution logic.
 """
-
-from custom_exceptions import UserExitException
-from runtime import parse_user_input, perform_command
+from todo.custom_exceptions import UserExitException
+from todo.runtime import parse_user_input, perform_command
 
 def main():
     """
@@ -17,7 +16,6 @@ def main():
             break
         except Exception as ex:
             print('You have done something wrong!', ex)
-
 
 if __name__ == '__main__':
     try:

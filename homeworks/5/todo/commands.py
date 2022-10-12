@@ -1,8 +1,6 @@
-from operator import index
-from storage import Storage
-from custom_exceptions import UserExitException
-from models import BaseItem
-from reflection import find_classes
+from todo.custom_exceptions import UserExitException
+from todo.models import BaseItem
+from todo.reflection import find_classes
 
 #Это база
 class BaseCommand(object):
