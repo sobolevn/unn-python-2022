@@ -1,0 +1,16 @@
+on: [push, pull_request]
+
+jobs:
+  custom_test:
+    runs-on: ubuntu-latest
+    name: Check empty files
+    steps:
+      - uses: actions/checkout@v3
+      - name: Checking
+        run: |
+          if find . -name "*.py" -type f -empty | sed '/__init__.py/d' | grep ".*"; then
+              echo Empty files above 🥹 ^^
+              exit 1
+          else
+              echo Success!
+          fi
