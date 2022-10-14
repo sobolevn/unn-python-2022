@@ -7,7 +7,16 @@ Any = type(object())
 
 
 def contract(arg_types=None, return_type=None, raises=None):
-    """This function create contract decorator with the specified conditions"""
+    """Make a contract decorator with the specified conditions.
+    
+    Args:
+        arg_types: tuple of valid argument types
+        return_type: valid return type
+        raises: tuple of valid raised exceptions
+    
+    Returns:
+        return: decorator
+    """
     def contract_decorator(function):
         def wrapped(*args, **kwargs):
             if arg_types is not None:
