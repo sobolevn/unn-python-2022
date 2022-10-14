@@ -16,7 +16,7 @@ class ToDoItem(BaseItem):
     def __str__(self):
         return '{0} {1}: {2}'.format(
             self.status[self.done],
-            super().__str__()[:-4],
+            super().__str__().replace('Item', ''),
             self.heading,
         )
 
@@ -34,7 +34,7 @@ class ToBuyItem(BaseItem):
     def __str__(self):
         return '{0} {1}: {2} for {3}'.format(
             self.status[self.done],
-            super().__str__()[:-4],
+            super().__str__().replace('Item', ''),
             self.heading,
             self.price,
         )
@@ -54,7 +54,7 @@ class ToReadItem(BaseItem):
     def __str__(self):
         return '{0} {1}: {2} {3}'.format(
             self.status[self.done],
-            super().__str__()[:-4],
+            super().__str__().replace('Item', ''),
             self.heading,
             self.url,
         )
