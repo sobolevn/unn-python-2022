@@ -1,0 +1,41 @@
+class ContractError(Exception):
+    """We use this error when someone breaks our contract."""
+
+
+#: Special value, that indicates that validation for this type is not required.
+Any = object()
+
+
+def contract(arg_types=None, return_type=None, raises=None):
+    def contract_decorator(function):
+        def inner(*args,**kwargs):
+            if arg_types is not None:
+                tp = type(arg_types[0])
+                for number_arg in enumerate(args, 1):
+                    if tp != type(args[number_arg]) and args[number_arg] != 0:
+                        raise ContractError(ContractError)
+            if return_type is not None and return_type != type(inner(*args, **kwargs)):
+                raise ContractError(ContractError)
+            try:
+                result = function(*args, **kwargs)
+            except Exception:
+                raise ContractError(ContractError)
+            except raises:
+                raise raises
+            return result
+        return inner
+    return contract_decorator
+
+@contract(arg_types = (int, int), return_type=int)
+def add_two_numbers(first, second):
+    return first + second
+
+add_two_numbers(1, 2)
+
+@contract(arg_types=(int, int), return_type=float, raises=(ZeroDivisionError))
+def div(first, second):
+    return first / second
+
+div(1, 2)
+div(1, 0)
+div(1, None)
