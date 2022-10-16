@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "my-awesome-script"
+version = "0.1.0"
+description = ""
+authors = ["relby <kudinov.nikita@gmail.com>"]
+readme = "README.md"
+packages = [{include = "my_awesome_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Pygments = "^2.13.0"
+
+
+[tool.poetry.group.dev.dependencies]
+types-Pygments = "^2.13.1.1"
+mypy = "^0.982"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
