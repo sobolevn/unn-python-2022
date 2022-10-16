@@ -1,16 +1,18 @@
 [tool.poetry]
-name = "my-awesome-script"
+name = "my_awesome_script"
 version = "0.1.0"
 description = ""
 authors = ["relby <kudinov.nikita@gmail.com>"]
 readme = "README.md"
 packages = [{include = "my_awesome_script"}]
 
+[tool.poetry.scripts]
+main = "my_awesome_script.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 Pygments = "^2.13.0"
 cowpy = "^1.1.5"
-
 
 [tool.poetry.group.dev.dependencies]
 types-Pygments = "^2.13.1.1"
