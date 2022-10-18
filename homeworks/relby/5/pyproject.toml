@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "my-awesome-script"
+name = "my_awesome_script"
 version = "0.1.0"
 description = ""
 authors = ["relby <kudinov.nikita@gmail.com>"]
@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "my_awesome_script"}]
 
 [tool.poetry.scripts]
-my-awesome-script = "my_awesome_script.__main__:main"
+my_awesome_script = "my_awesome_script.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"

@@ -39,8 +39,8 @@ def time(args: Namespace) -> None:
         print(datetime.now(tz).strftime('%H:%M:%S'))
 
 
-def create_parser() -> ArgumentParser:
-    parser = ArgumentParser(prog='my-awesome-script')
+def create_parser(prog_name) -> ArgumentParser:
+    parser = ArgumentParser(prog=prog_name)
 
     subparsers = parser.add_subparsers(
         required=True,
