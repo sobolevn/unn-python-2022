@@ -1,12 +1,10 @@
 from argparse import ArgumentParser, Namespace
+from datetime import datetime
 
 from cowpy.cow import Cowacter
-
 from pygments import highlight as hl
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import PythonLexer
-
-from datetime import datetime
 from pytz import timezone
 from pytz.exceptions import UnknownTimeZoneError
 

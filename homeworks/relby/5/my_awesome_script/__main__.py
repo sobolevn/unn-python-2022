@@ -1,7 +1,9 @@
 from typing import Final
-from .parser import create_parser
+
+from .parser import create_parser  # noqa: WPS300
 
 PROG_NAME: Final = 'my_awesome_script'
+
 
 def main() -> None:
     parser = create_parser(PROG_NAME)
