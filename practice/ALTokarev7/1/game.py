@@ -12,9 +12,12 @@ MOVES = {
     'd': 1,
 }
 
-CONTROL_BUTTONS = ("w", "s","a","d")
+CONTROL_BUTTONS = ("w", "s", "a", "d")
 
-TRUE_POS = (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,"x")
+TRUE_POS = (1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15, "x"
+            )
+
 
 def shuffle_field():
     shuffled_tiles = list(TRUE_POS)
@@ -23,21 +26,24 @@ def shuffle_field():
 
     return shuffled_tiles
 
+
 def print_field(field):
     for i in range(4):
         print(
-            field[i*4],'\t',
-            field[i*4 + 1],'\t',
-            field[i*4 + 2],'\t',
+            field[i*4], '\t',
+            field[i*4 + 1], '\t',
+            field[i*4 + 2], '\t',
             field[i*4 + 3],
         )
     return
 
+
 def is_game_finished(field):
     if tuple(field) == TRUE_POS:
         return True
-        
+
     return False
+
 
 def perform_move(field, key):
     empty_ind = field.index("x")
@@ -45,20 +51,22 @@ def perform_move(field, key):
     if new_ind < 0 or new_ind > (len(field) - 1):
         return None
 
-    if key == 'a' or key =='d':
+    if key == 'a' or key == 'd':
         if (empty_ind // 4) != (new_ind // 4):
-            return None 
-    
+            return None
+
     field[empty_ind], field[new_ind] = field[new_ind], field[empty_ind]
     return field
+
 
 def handle_user_input():
     move = input("choose you move: ")
     while move not in CONTROL_BUTTONS:
-        print("Enter only : 'w', 's','a','d'") 
+        print("Enter only : 'w', 's','a','d'")
         move = input("choose you move: ")
 
     return move
+
 
 def main():
     field = shuffle_field()
@@ -66,8 +74,9 @@ def main():
         print_field(field)
         if perform_move(field, handle_user_input()) is None:
             print("Invalid move!!!")
-    
+
     print("You`re champion!!!")
+
 
 if __name__ == '__main__':
     main()

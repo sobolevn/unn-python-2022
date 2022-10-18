@@ -23,7 +23,7 @@ def perform_command(command: str) -> None:
     :param command: command name, selected by user.
     """
     command = command.lower()
-    routes = get_routes() 
+    routes = get_routes()
 
     try:
         command_class = routes[command]

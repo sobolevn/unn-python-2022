@@ -1,11 +1,11 @@
 class BaseItem(object):
 
-    status = {False : '-', True : '+'}
+    status = {False: '-', True: '+'}
 
     def __init__(self, heading):
         self.heading = heading
         self.done = False  # TODO: make sure we can use it...
-        
+
     def __repr__(self):
         return self.__class__.__name__
 
@@ -14,7 +14,7 @@ class BaseItem(object):
             self.status[self.done],
             self.__class__.__name__[:-4]
             )
-        
+
     @classmethod
     def construct(cls):
         raise NotImplementedError()

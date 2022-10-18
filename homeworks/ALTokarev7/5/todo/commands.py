@@ -33,7 +33,6 @@ class NewCommand(BaseCommand):
         for index, name in enumerate(classes.keys()):
             print('{0}: {1}'.format(index, name))
 
-        selection = None
         selected_key = None
 
         while True:
@@ -67,18 +66,19 @@ class NewCommand(BaseCommand):
             raise IndexError('Index needs to be >0')
         return list(classes.keys())[selection]
 
+
 class DoneCommand(BaseCommand):
     label = 'done'
 
     def perform(self, store):
-        num = int(input('Input number of item to change item status on done: '))
+        num = int(input('Input number of item to change status on done: '))
         if num < 0:
             raise IndexError('Index needs to be >0')
         if num >= len(store.items):
             raise IndexError('Wrong index, try again.')
 
         store.items[num].done = True
-        
+
         print('item {0} is done!'.format(store.items[num]))
         print()
 
@@ -87,14 +87,14 @@ class UndoneCommand(BaseCommand):
     label = 'undone'
 
     def perform(self, store):
-        num = int(input('Input number of item to change item status on undone: '))
+        num = int(input('Input number of item to change status on undone: '))
         if num < 0:
             raise IndexError('Index needs to be >0')
         if num >= len(store.items):
             raise IndexError('Wrong index, try again.')
 
         store.items[num].done = False
-        
+
         print('item {0} is undone!'.format(store.items[num]))
         print()
 

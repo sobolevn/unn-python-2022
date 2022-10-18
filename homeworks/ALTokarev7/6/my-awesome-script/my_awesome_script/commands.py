@@ -5,11 +5,14 @@ from cowpy import cow
 from datetime import datetime
 import pytz
 
+
 def highligh(text: str):
-    print(highlight(text,PythonLexer(),TerminalFormatter()))
+    print(highlight(text, PythonLexer(), TerminalFormatter()))
+
 
 def cowsay(text: str):
     print(cow.milk_random_cow(text))
+
 
 def time(timezone):
     local_date = datetime.now(pytz.timezone(timezone))
