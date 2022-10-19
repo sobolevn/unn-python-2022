@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "my-awesome-script"
+version = "0.1.0"
+description = ""
+authors = ["GitDefeatedMe <vasilevsijsasa@gmail.com>"]
+readme = "README.md"
+packages = [{include = "my_awesome_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygments = "^2.13.0"
+cowpy = "^1.1.5"
+pytz = "^2022.5"
+
+[tool.poetry.scripts]
+my_awesome_script = "my_awesome_script.__main__:main"
+
+[tool.poetry.group.dev.dependencies]
+pygments = "^2.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
