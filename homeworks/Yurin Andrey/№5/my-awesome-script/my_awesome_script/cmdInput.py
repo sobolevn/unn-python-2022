@@ -1,17 +1,17 @@
 import argparse
-from .command import command
+
+from .command import command, functions
 
 
 def cmd_input():
+    """Input method."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("operation", help="highlight 'any text' or cowsay 'any text' or time 'Region/City'"
-                                          "(example: Europe/Moscow)",
-                        choices=["highlight", "cowsay", "time"])
-    parser.add_argument("text")
+    parser.add_argument('operation', help='input command', choices=functions)
+    parser.add_argument('parameter', help="'Any text' or 'Region/City'")
     args = parser.parse_args()
 
     try:
-        command(args.operation, args.text)
+        command(args.operation, args.parameter)
     except Exception as ex:
-        command("help")
+        command('help')
         raise ex
