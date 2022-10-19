@@ -1,6 +1,6 @@
 from typing import Final
 
-from .parser import create_parser  # noqa: WPS300
+from my_awesome_script.parser import create_parser
 
 PROG_NAME: Final = 'my_awesome_script'
 
