@@ -1,9 +1,11 @@
+
+from datetime import datetime
+
+import pytz
+from cowpy import cow
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import PythonLexer
-from cowpy import cow
-from datetime import datetime
-import pytz
 
 
 def command(operation: str, text: str = None) -> None:
@@ -24,7 +26,7 @@ def time_(timezone: str) -> None:
 
 
 def help_() -> None:
-    print("EXAMPLE COMMAND:")
+    print('EXAMPLE COMMAND:')
     print(" highlight 'any text'")
     print(" cowsay 'any text'")
     print(" time 'Region/City' (example: Europe/Moscow)")
