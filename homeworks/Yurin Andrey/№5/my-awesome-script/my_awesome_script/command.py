@@ -7,7 +7,7 @@ import pytz
 
 
 def command(operation: str, text: str = None) -> None:
-    functions[operation](text) if operation != "help" else functions[operation]()
+    functions[operation]() if operation == 'help' else functions[operation](text)
 
 
 def highlight_(code: str) -> None:
@@ -30,4 +30,4 @@ def help_() -> None:
     print(" time 'Region/City' (example: Europe/Moscow)")
 
 
-functions = {'highlight': highlight_, "cowsay": cowsay_, "time": time_, "help": help_}
+functions = {'highlight': highlight_, 'cowsay': cowsay_, 'time': time_, 'help': help_}
