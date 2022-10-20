@@ -36,4 +36,4 @@ jobs:
       - name: Lint all python changed files
         run: |
           FILES=$(echo ${{ steps.changed-files.outputs.all_changed_files }} | grep -P '(\w+/)*\w+\.py' -o)
-          [ -z "$FILES" ] && echo No python files to check || (echo Checking files: $FILES .. && echo $FILES | flake8 --count --statistics)
+          [ -z "$FILES" ] && echo No python files to check || (echo Checking files: $FILES ... && echo $FILES | flake8 --count --statistics)
