@@ -1,40 +1,27 @@
-from argparse import ArgumentParser, Namespace
-from datetime import datetime
+import inspect
+from argparse import ArgumentParser, _SubParsersAction  # noqa: WPS450
+from importlib import import_module
 
-from cowpy.cow import Cowacter
-from pygments import highlight as hl
-from pygments.formatters import TerminalFormatter
-from pygments.lexers import PythonLexer
-from pytz import timezone
-from pytz.exceptions import UnknownTimeZoneError
+from my_awesome_script.classes import Command
 
 
-def highlight(args: Namespace) -> None:
-    code = args.code
-
-    print(hl(
-        code,
-        PythonLexer(),
-        TerminalFormatter(),
-    ))
-
-
-def cowsay(args: Namespace) -> None:
-    phrase = args.phrase
-
-    cow = Cowacter(eyes='stoned')
-    print(cow.milk(phrase))
+def get_commands():
+    module_members = inspect.getmembers(
+        import_module('.commands', 'my_awesome_script'),
+    )
+    commands = []
+    for _, module_member in module_members:
+        if not inspect.isclass(module_member):
+            continue
+        if module_member is not Command and issubclass(module_member, Command):
+            commands.append(module_member)
+    return commands
 
 
-def time(args: Namespace) -> None:
-    region = args.region
-
-    try:
-        tz = timezone(region)
-    except UnknownTimeZoneError:
-        print('Region is not found')
-    else:
-        print(datetime.now(tz).strftime('%H:%M:%S'))
+def init_commands(subparsers: _SubParsersAction):
+    commands = get_commands()
+    for command in commands:
+        command.add_to_subparsers(subparsers)
 
 
 def create_parser(prog_name) -> ArgumentParser:
@@ -42,28 +29,9 @@ def create_parser(prog_name) -> ArgumentParser:
 
     subparsers = parser.add_subparsers(
         required=True,
-        title='subcommands',
+        title='commands',
     )
 
-    parser_highlight = subparsers.add_parser(
-        'highlight',
-        help='Hightlights python code in your terminal',
-    )
-    parser_highlight.add_argument('code', help='The python code to highlight')
-    parser_highlight.set_defaults(func=highlight)
-
-    parser_cowsay = subparsers.add_parser(
-        'cowsay',
-        help='A cow will say everything you want',
-    )
-    parser_cowsay.add_argument('phrase', help='The phrase of a cow')
-    parser_cowsay.set_defaults(func=cowsay)
-
-    parser_time = subparsers.add_parser(
-        'time',
-        help='Get time of the specific region',
-    )
-    parser_time.add_argument('region', help='The region to get time of')
-    parser_time.set_defaults(func=time)
+    init_commands(subparsers)
 
     return parser

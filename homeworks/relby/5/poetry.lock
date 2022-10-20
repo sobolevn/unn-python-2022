@@ -624,7 +624,7 @@ types-setuptools = "*"
 
 [[package]]
 name = "types-pytz"
-version = "2022.4.0.0"
+version = "2022.5.0.0"
 description = "Typing stubs for pytz"
 category = "dev"
 optional = false
@@ -691,7 +691,7 @@ typing_extensions = ">=4.0,<5.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f730eaa579625a7a0c63b7e1633ce0269c63ab0ec1e871b0a3aa9ca819f518b2"
+content-hash = "88eca8ddb4a61cf454705a95032acb2507de386ca2e56e7e7aed666016e093e8"
 
 [metadata.files]
 astor = [
@@ -1005,8 +1005,8 @@ types-Pygments = [
     {file = "types_Pygments-2.13.1.1-py3-none-any.whl", hash = "sha256:9c789be357e21f611d215af3ae9dfcc24469dc4be96e96ea9b4e5e0c783afba5"},
 ]
 types-pytz = [
-    {file = "types-pytz-2022.4.0.0.tar.gz", hash = "sha256:17d66e4b16e80ceae0787726f3a22288df7d3f9fdebeb091dc64b92c0e4ea09d"},
-    {file = "types_pytz-2022.4.0.0-py3-none-any.whl", hash = "sha256:950b0f3d64ed5b03a3e29c1e38fe2be8371c933c8e97922d0352345336eb8af4"},
+    {file = "types-pytz-2022.5.0.0.tar.gz", hash = "sha256:0c163b15d3e598e6cc7074a99ca9ec72b25dc1b446acc133b827667af0b7b09a"},
+    {file = "types_pytz-2022.5.0.0-py3-none-any.whl", hash = "sha256:a8e1fe6a1b270fbfaf2553b20ad0f1316707cc320e596da903bb17d7373fed2d"},
 ]
 types-setuptools = [
     {file = "types-setuptools-65.5.0.1.tar.gz", hash = "sha256:5b297081c8f1fbd992cd8b305a97ed96ee6ffc765e9115124029597dd10b8a71"},
