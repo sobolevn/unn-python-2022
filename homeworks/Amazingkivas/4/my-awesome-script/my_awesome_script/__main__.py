@@ -4,7 +4,7 @@ from my_awesome_script.parser import create_parser
 
 def main():
     """
-    Calli the parser.
+    Call the parser.
 
     :return:
     """
