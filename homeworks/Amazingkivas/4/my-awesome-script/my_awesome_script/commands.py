@@ -30,7 +30,7 @@ def highlight(code: str):
         code: code to highlight
     """
     this_lexer = get_lexer_by_name('python')
-    this_formatter = get_formatter_by_name('html')
+    this_formatter = get_formatter_by_name('terminal')
     print(hl(code, lexer=this_lexer, formatter=this_formatter))  # noqa: WPS421
 
 
