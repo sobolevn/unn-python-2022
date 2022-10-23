@@ -17,7 +17,7 @@ class HighlightCommand(Command):
     arguments = [('code', 'The python code to highlight')]
 
     @classmethod
-    def perform(cls, args: Namespace):
+    def perform(cls, args: Namespace) -> None:
         code = args.code
 
         print(hl(
@@ -33,7 +33,7 @@ class CowsayCommand(Command):
     arguments = [('phrase', 'The phrase of a cow')]
 
     @classmethod
-    def perform(cls, args: Namespace):
+    def perform(cls, args: Namespace) -> None:
         phrase = args.phrase
 
         cow = Cowacter(eyes='stoned')
@@ -46,7 +46,7 @@ class TimeCommand(Command):
     arguments = [('region', 'The region to get time of')]
 
     @classmethod
-    def perform(cls, args: Namespace):
+    def perform(cls, args: Namespace) -> None:
         region = args.region
 
         try:

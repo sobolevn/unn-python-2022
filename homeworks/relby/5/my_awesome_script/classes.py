@@ -14,5 +14,5 @@ class Command(object):
         subparser.set_defaults(func=cls.perform)
 
     @classmethod
-    def perform(cls, args: Namespace):
+    def perform(cls, args: Namespace) -> None:
         raise NotImplementedError
