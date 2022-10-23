@@ -27,7 +27,7 @@ def highlight(code: str):
     Highlight code.
 
     Args:
-        code: user's text
+        code: code to highlight
     """
     this_lexer = get_lexer_by_name('python')
     this_formatter = get_formatter_by_name('html')
@@ -53,7 +53,8 @@ def time(region: str):
         region: selected region
     """
     ftime = '%H:%M:%S'
-    print(datetime.now(timezone(region)).strftime(ftime))  # noqa: WPS421
+    time_zone = timezone(region)
+    print(datetime.now(time_zone).strftime(ftime))  # noqa: WPS421
 
 
 commands = {'highlight': highlight, 'cowsay': cowsay, 'time': time}
