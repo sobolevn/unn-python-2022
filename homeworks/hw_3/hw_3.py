@@ -36,10 +36,10 @@ def contract(arg_types=None, return_type=None, raises=None):
 
 
 #First example
-#@contract(arg_types=(int, int), return_type=int)
-#def add_two_numbers(first, second):
-#    return first + second
-#print(add_two_numbers(1, 2))
+@contract(arg_types=(int, int), return_type=int)
+def add_two_numbers(first, second):
+    return first + second
+print(add_two_numbers(1, 2))
 
 
 
