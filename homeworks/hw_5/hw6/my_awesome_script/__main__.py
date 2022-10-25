@@ -1,4 +1,4 @@
-"""Main program."""
+"""Main file."""
 from .cmd_input import parse_cmd_input
 
 
