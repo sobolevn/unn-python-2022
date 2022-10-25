@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "my-hw-6"
+version = "0.1.0"
+description = ""
+authors = ["Dan Yunin <DaniilUnin2002@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "hw_6"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
