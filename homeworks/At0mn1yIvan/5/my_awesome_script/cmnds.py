@@ -14,24 +14,24 @@ def task(action: str, text: str = None) -> None:
         functions[action](text)
 
 
-def highlight_(code: str) -> None:
+def Highlight(code: str) -> None:
     print(highlight(code, PythonLexer(), TerminalFormatter()))
 
 
-def cowsay_(text: str) -> None:
+def Cowsay(text: str) -> None:
     print(cow.milk_random_cow(text))
 
 
-def time_(timezone: str) -> None:
+def Time(timezone: str) -> None:
     local_date = datetime.now(pytz.timezone(timezone))
     print("{0} {1}".format(local_date.date(), local_date.time()))
 
 
-def help_() -> None:
+def Help() -> None:
     print("EXAMPLE COMMAND:")
     print(" highlight 'any text'")
     print(" cowsay 'any text'")
     print(" time 'Region/City'")
 
 
-functions = {'highlight': highlight_, 'cowsay': cowsay_, 'time': time_, 'help': help_}   # noqa: E501
+functions = {'highlight': Highlight, 'cowsay': Cowsay, 'time': Time, 'help': Help}   # noqa: E501
