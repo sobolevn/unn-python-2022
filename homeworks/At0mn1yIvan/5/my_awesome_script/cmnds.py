@@ -1,9 +1,10 @@
+from datetime import datetime
+
 import pytz
+from cowpy import cow
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import PythonLexer
-from cowpy import cow
-from datetime import datetime
 
 
 def task(action: str, text: str = None) -> None:

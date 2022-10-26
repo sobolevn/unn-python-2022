@@ -1,5 +1,6 @@
 import argparse
-from cmnds import task, functions
+
+from cmnds import functions, task
 
 
 def com_input():
