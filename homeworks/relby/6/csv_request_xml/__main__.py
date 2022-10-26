@@ -1,11 +1,11 @@
 import csv
 import os
 import re
-import xml.etree.cElementTree as ET
 from typing import Final, Literal, overload
 
 import requests
 from loguru import logger
+from lxml import etree  # noqa: S410
 
 from csv_request_xml.api_types import Album, Post, Todo, User  # type: ignore
 
@@ -14,7 +14,9 @@ USERS_API_URL: Final = 'https://jsonplaceholder.typicode.com/users'
 
 
 def is_email(entry: str) -> bool:
-    regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+    regex = re.compile(
+        r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+',
+    )
     return re.match(regex, entry) is not None
 
 
@@ -69,14 +71,13 @@ def get_user_field_by_id(
     request = requests.get(api_route)
     logger.info('Request to {0} took {1}'.format(
         api_route,
-        request.elapsed
+        request.elapsed,
     ))
     return request.json()
 
 
 def save_to_file(
     user: User,
-    email: str,
     posts: list[Post],
     albums: list[Album],
     todos: list[Todo],
@@ -84,33 +85,33 @@ def save_to_file(
 ) -> None:
     os.makedirs(filepath, exist_ok=True)
 
-    user_node = ET.Element('user')
-    ET.SubElement(user_node, 'id').text = str(user['id'])
-    ET.SubElement(user_node, 'email').text = email
+    user_node = etree.Element('user')
 
-    posts_node = ET.SubElement(user_node, 'posts')
+    etree.SubElement(user_node, 'id').text = str(user['id'])
+    etree.SubElement(user_node, 'email').text = user['email']
+
+    posts_node = etree.SubElement(user_node, 'posts')
     for post in posts:
-        post_node = ET.SubElement(posts_node, 'post')
-        ET.SubElement(post_node, 'id').text = str(post['id'])
-        ET.SubElement(post_node, 'title').text = post['title']
-        ET.SubElement(post_node, 'body').text = post['body']
+        post_node = etree.SubElement(posts_node, 'post')
+        etree.SubElement(post_node, 'id').text = str(post['id'])
+        etree.SubElement(post_node, 'title').text = post['title']
+        etree.SubElement(post_node, 'body').text = post['body']
 
-    albums_node = ET.SubElement(user_node, 'albums')
+    albums_node = etree.SubElement(user_node, 'albums')
     for album in albums:
-        album_node = ET.SubElement(albums_node, 'album')
-        ET.SubElement(album_node, 'id').text = str(album['id'])
-        ET.SubElement(album_node, 'title').text = album['title']
+        album_node = etree.SubElement(albums_node, 'album')
+        etree.SubElement(album_node, 'id').text = str(album['id'])
+        etree.SubElement(album_node, 'title').text = album['title']
 
-    todos_node = ET.SubElement(user_node, 'todos')
+    todos_node = etree.SubElement(user_node, 'todos')
     for todo in todos:
-        todo_node = ET.SubElement(todos_node, 'todo')
-        ET.SubElement(todo_node, 'id').text = str(todo['id'])
-        ET.SubElement(todo_node, 'title').text = todo['title']
-        ET.SubElement(todo_node, 'completed').text = str(todo['completed'])
+        todo_node = etree.SubElement(todos_node, 'todo')
+        etree.SubElement(todo_node, 'id').text = str(todo['id'])
+        etree.SubElement(todo_node, 'title').text = todo['title']
+        etree.SubElement(todo_node, 'completed').text = str(todo['completed'])
 
-    tree = ET.ElementTree(user_node)
-    ET.indent(tree)
-    tree.write('{0}/{1}.xml'.format(filepath, user['id']))
+    tree = etree.ElementTree(user_node)
+    tree.write('{0}/{1}.xml'.format(filepath, user['id']), pretty_print=True)
     logger.info('Saved {0}/{1}.xml for user with email `{2}`'.format(
         filepath,
         user['id'],
@@ -137,7 +138,7 @@ def main() -> None:
             posts = get_user_field_by_id('posts', user_id)
             albums = get_user_field_by_id('albums', user_id)
             todos = get_user_field_by_id('todos', user_id)
-            save_to_file(user, email, posts, albums, todos)
+            save_to_file(user, posts, albums, todos)
         else:
             logger.warning('User with this email `{0}` was not found'.format(email))
 
