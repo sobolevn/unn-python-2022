@@ -6,7 +6,6 @@ from cowpy import cow
 from datetime import datetime
 
 
-
 def task(action: str, text: str = None) -> None:
     if action == 'help':
         functions[action]()
@@ -34,4 +33,4 @@ def help_() -> None:
     print(" time 'Region/City'")
 
 
-functions = {'highlight': highlight_, 'cowsay': cowsay_, 'time': time_, 'help': help_}
+functions = {'highlight': highlight_, 'cowsay': cowsay_, 'time': time_, 'help': help_}   # noqa: E501
