@@ -35,8 +35,6 @@ class UserAttrs(TypedDict):
     todos: list[Todo]
 
 
-USER_ATTR_NAMES: Final = UserAttrs.__annotations__.keys()
-
 BINDINGS: Final = types.MappingProxyType({
     'posts': Post,
     'albums': Album,

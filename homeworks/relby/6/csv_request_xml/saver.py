@@ -24,7 +24,7 @@ def save_to_xml(
 
     tree = etree.ElementTree(user_node)
     tree.write('{0}/{1}.xml'.format(filepath, user_id), pretty_print=True)
-    logger.info('Saved {0}/{1}.xml for user with email `{2}`'.format(
+    logger.success('Saved {0}/{1}.xml for user with email `{2}`'.format(
         filepath,
         user_id,
         user['email'],

@@ -3,14 +3,15 @@ from typing import cast
 import requests
 from loguru import logger
 
-from csv_request_xml.api_types import (
-    BINDINGS,
-    USER_ATTR_NAMES,
-    USERS_API_URL,
-    User,
-    UserAttrs,
-)
-from csv_request_xml.handlers import only
+from csv_request_xml.api_types import BINDINGS, USERS_API_URL, User, UserAttrs
+
+
+def _only_keys(dictionary: dict, keys: list) -> dict:
+    return {
+        dict_value: dictionary[dict_value]
+        for dict_value in dictionary
+        if dict_value in keys
+    }
 
 
 def get_users() -> list[User]:
@@ -27,7 +28,7 @@ def get_user_attributes(
 ) -> UserAttrs:
     out = {}
 
-    for attr_name in USER_ATTR_NAMES:
+    for attr_name in UserAttrs.__annotations__:
         related_type = BINDINGS[attr_name]
         api_route = '{0}/{1}/{2}'.format(
             USERS_API_URL,
@@ -41,7 +42,7 @@ def get_user_attributes(
         ))
 
         out[attr_name] = [
-            only(attr, list(related_type.__annotations__.keys()))
+            _only_keys(attr, list(related_type.__annotations__.keys()))
             for attr in request.json()
         ]
 
