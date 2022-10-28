@@ -1,6 +1,7 @@
 import csv
 import requests
 from lxml import etree as et, objectify
+import os
 
 # Можно ли возвращать значение прямо из контекстного менеджера, не будет ли это плохо?
 # В файлах json в тексте содержатся спец симовл \n, в следствии чего текст переносится на новые строки, это надо исправлять или нет?
@@ -21,7 +22,7 @@ def start_parsing():
 
 def parse_emails_from_csv_file():
     emails = []
-    with open('hw_6/emails.csv') as f:
+    with open('hw_6/emails_file.csv') as f:
         reader = csv.reader(f)
         emails = list(reader)
     return emails
@@ -40,6 +41,7 @@ def get_ready_dict_with_emails_and_ids(people_data, emails_ids):
     return emails_ids
 
 def write_data_xml(dict_emails_and_ids):
+    create_catalog_users()
     for email in dict_emails_and_ids:
         xml_struct = create_struct_xml_file(email, dict_emails_and_ids)
         xml_struct = add_posts_in_xml_file(xml_struct, email, dict_emails_and_ids)
@@ -87,6 +89,10 @@ def add_todos_in_xml_file(xml_struct, user_email, all_data):
 def save_ready_xml_file(xml_struct, user_email, all_data):
     xml_file = et.ElementTree(xml_struct)
     xml_file.write('hw_6/users/{0}.xml'.format(all_data[user_email]), encoding="UTF-8", pretty_print=True, xml_declaration = True)
+
+def create_catalog_users():
+    if not os.path.exists("hw_6/users"):
+        os.mkdir("hw_6/users")
 
 def get_user_data_posts(user_id):
     url = 'https://jsonplaceholder.typicode.com/users/{0}/posts'.format(user_id)
