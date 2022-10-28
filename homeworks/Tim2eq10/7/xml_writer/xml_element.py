@@ -1,74 +1,58 @@
-import xml.etree.ElementTree as Xml
+from lxml import etree  # noqa: S410
 
 import load
 
 
-def post(user_post):
-    root = Xml.Element('post')
+def set_id_subelem(root, full_object):
+    id_elem = etree.SubElement(root, 'id')
+    id_elem.text = str(full_object['id'])
 
-    post_id = Xml.SubElement(root, 'id')
-    post_id.text = str(user_post['id'])
 
-    post_title = Xml.SubElement(root, 'title')
-    post_title.text = user_post['title'].replace('\n', ' ')
-
-    post_body = Xml.SubElement(root, 'body')
-    post_body.text = user_post['body'].replace('\n', ' ')
-
-    return root
+def set_title_subelem(root, full_object):
+    title_elem = etree.SubElement(root, 'title')
+    title_elem.text = full_object['title'].replace('\n', ' ')
 
 
 def posts(user_posts):
-    root = Xml.Element('posts')
+    root = etree.Element('posts')
     for user_post in user_posts:
-        root.append(post(user_post))
-    return root
+        sub = etree.SubElement(root, 'post')
 
-
-def album(user_album):
-    root = Xml.Element('album')
-
-    album_id = Xml.SubElement(root, 'id')
-    album_id.text = str(user_album['id'])
-
-    album_title = Xml.SubElement(root, 'title')
-    album_title.text = user_album['title'].replace('\n', ' ')
+        set_id_subelem(sub, user_post)
+        set_title_subelem(sub, user_post)
+        post_body = etree.SubElement(sub, 'body')
+        post_body.text = user_post['body'].replace('\n', ' ')
 
     return root
 
 
 def albums(user_albums):
-    root = Xml.Element('albums')
+    root = etree.Element('albums')
     for user_album in user_albums:
-        root.append(album(user_album))
-    return root
+        sub = etree.SubElement(root, 'album')
 
-
-def todo(user_todo):
-    root = Xml.Element('todo')
-
-    todo_id = Xml.SubElement(root, 'id')
-    todo_id.text = str(user_todo['id'])
-
-    todo_title = Xml.SubElement(root, 'title')
-    todo_title.text = user_todo['title'].replace('\n', ' ')
-
-    todo_completed = Xml.SubElement(root, 'completed')
-    todo_completed.text = str(user_todo['completed'])
+        set_id_subelem(sub, user_album)
+        set_title_subelem(sub, user_album)
 
     return root
 
 
 def todos(user_todos):
-    root = Xml.Element('todos')
+    root = etree.Element('todos')
     for user_todo in user_todos:
-        root.append(todo(user_todo))
+        sub = etree.SubElement(root, 'todo')
+
+        set_id_subelem(sub, user_todo)
+        set_title_subelem(sub, user_todo)
+        todo_completed = etree.SubElement(sub, 'completed')
+        todo_completed.text = str(user_todo['completed'])
+
     return root
 
 
 def user(user_id):
-    root = Xml.Element('user')
-    
+    root = etree.Element('user')
+
     root.append(posts(load.posts(user_id)))
     root.append(albums(load.albums(user_id)))
     root.append(todos(load.todos(user_id)))

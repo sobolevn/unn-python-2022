@@ -1,5 +1,4 @@
 import load
-from exceptions import GetIdError
 from logger_time import logger_time
 
 
@@ -10,4 +9,5 @@ def get_id(user_email):
     for user in users:
         if user['email'] == user_email:
             return user['id']
-    raise GetIdError
+
+    raise ValueError

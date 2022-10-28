@@ -5,9 +5,9 @@ from loguru import logger
 
 def logger_time(name=''):
     def wrapper(func):
-        def inner(*args):
+        def inner(*args):  # noqa: WPS430
             start_time = datetime.now()
-            result = func(*args)
+            result = func(*args)  # noqa: WPS110
             end_time = datetime.now()
 
             logger.info('{0} | Duration: {1}s'.format(
