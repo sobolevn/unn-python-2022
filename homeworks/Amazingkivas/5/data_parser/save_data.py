@@ -3,7 +3,6 @@ from os import mkdir, path
 
 from loguru import logger
 from lxml import etree  # noqa: S410
-
 from users_data import get_users_data
 
 
@@ -37,9 +36,10 @@ def _write_data(this_id, this_email):
         xml_declaration=True,
         pretty_print=True,
     )
+        
     logger.success(
-        'The data has been uploaded into ' +
-        'users/{0}/data.xml'.format(this_id),
+        'The data has been uploaded into '
+        + 'users/{0}/data.xml'.format(this_id),
     )
 
 
