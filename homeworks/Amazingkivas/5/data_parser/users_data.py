@@ -36,8 +36,7 @@ def _get_users_id(emails):
 
     if len(emails) != len(users_id):
         logger.warning(
-            'Users were not found by' +
-            '{0} emails: '.format(len(emails) - len(users_id)),
+            '{0} emails were not found'.format(len(emails) - len(users_id)),
         )
 
     return users_id
