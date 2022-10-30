@@ -1,26 +1,22 @@
 [tool.poetry]
-name = "my-awesome-script"
+name = "data-parser"
 version = "0.1.0"
 description = ""
 authors = ["SaveliyBorisov <borisov.talim@yandex.ru>"]
 readme = "README.md"
-packages = [{include = "my_awesome_script"}]
+packages = [{include = "data_parser"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-cowpy = "^1.1.5"
-Pygments = "^2.13.0"
-pytz = "^2022.5"
-argparse = "^1.4.0"
-datetime = "^4.7"
+loguru = "^0.6.0"
+requests = "^2.28.1"
+lxml = "^4.9.1"
 
 [tool.poetry.group.dev.dependencies]
-safety = "^2.3.1"
-Pygments = "^2.13.0"
 wemake-python-styleguide = "^0.17.0"
 
 [tool.poetry.scripts]
-my-awesome-script = "my_awesome_script.__main__:main"
+start = "data_parser.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
