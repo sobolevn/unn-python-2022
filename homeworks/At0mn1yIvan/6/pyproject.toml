@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hw6"
+version = "0.1.0"
+description = ""
+authors = ["At0mn1yIvan <khramov.vanya@bk.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+loguru = "^0.6.0"
+wemake-python-styleguide = "^0.17.0"
+requests = "^2.28.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
