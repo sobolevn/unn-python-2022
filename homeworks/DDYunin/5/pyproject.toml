@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "my-awesome-script"
+version = "0.1.0"
+description = "There is my homework"
+authors = ["Dan Yunin <DaniilUnin2002@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "my_awesome_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+argparse = "^1.4.0"
+pygments = "^2.13.0"
+cowsay = "^5.0"
+pytz = "^2022.5"
+
+
+[tool.poetry.group.dev.dependencies]
+safety = "^2.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+my-awesome-script = "my_awesome_script.__main__:main"
