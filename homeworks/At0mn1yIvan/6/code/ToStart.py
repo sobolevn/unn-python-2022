@@ -1,9 +1,9 @@
 import re
 
-from ReadCSV import read
-from ParsingJSON import get_email_id, get_user_info
-from Writer import write
 from loguru import logger
+from ParsingJSON import get_email_id, get_user_info
+from ReadCSV import read
+from Writer import write
 
 
 def start(emails_path: str, json_path: str):

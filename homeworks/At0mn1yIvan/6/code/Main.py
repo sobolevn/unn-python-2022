@@ -1,7 +1,7 @@
 from typing import Final
 
-from ToStart import start
 from loguru import logger
+from ToStart import start
 
 
 def main():
