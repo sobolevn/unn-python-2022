@@ -42,7 +42,7 @@ def _write_data(this_id, this_email):
 
 def create_files(emails_file):
     """
-    Create files for saving users data.
+    Create files for writing users data.
 
     Args:
         emails_file: location of the emails file

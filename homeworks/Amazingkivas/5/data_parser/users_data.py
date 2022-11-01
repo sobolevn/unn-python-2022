@@ -13,7 +13,7 @@ def call_getter(attribute):
         attribute: getter key
 
     Returns:
-        return getter for return users data
+        return getter for get users data
     """
     return data_getters[attribute]
 

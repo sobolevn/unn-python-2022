@@ -3,11 +3,7 @@ from save_data import create_files
 
 
 def main():
-    """
-    Call the xml files creator.
-
-    :return:
-    """
+    """Call the xml files creator."""
     create_files('emails.csv')
 
 
