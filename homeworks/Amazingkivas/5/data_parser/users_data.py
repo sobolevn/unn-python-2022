@@ -5,9 +5,9 @@ from loguru import logger
 from requests import get
 
 
-def get_users_data(attribute):
+def call_getter(attribute):
     """
-    Get the users data getter.
+    Call the users data getter.
 
     Args:
         attribute: getter key
@@ -36,21 +36,22 @@ def _get_users_id(emails):
 
     if len(emails) != len(users_id):
         logger.warning(
-            'Users were not found by' +
-            '{0} emails: '.format(len(emails) - len(users_id)),
+            '{0} emails were not found'.format(len(emails) - len(users_id)),
         )
 
     return users_id
 
 
-def _get_csv_emails():
+def _get_csv_emails(location):
     row_data = []
-    with open('emails.csv') as file_emails:
+    with open(location) as file_emails:
         reader = csv.reader(file_emails, delimiter=';')
         for row in reader:
             row_data.extend(list(row))
 
-    logger.info('Number of users for parsing: {0}'.format(str(len(row_data))))
+    logger.info(
+        'Number of users on checking the email: {0}'.format(len(row_data)),
+    )
     return row_data
 
 
@@ -64,7 +65,7 @@ def _get_user_activity(user, activity=''):
 
 data_getters = {
     'general': _get_general_data,
-    'id': _get_users_id,
-    'csv_email': _get_csv_emails(),
+    'id_from_email': _get_users_id,
+    'csv_emails': _get_csv_emails,
     'activity': _get_user_activity,
 }

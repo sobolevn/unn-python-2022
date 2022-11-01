@@ -8,7 +8,7 @@ def main():
 
     :return:
     """
-    create_files()
+    create_files('emails.csv')
 
 
 if __name__ == '__main__':
