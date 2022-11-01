@@ -3,7 +3,6 @@ from os import mkdir, path
 
 from loguru import logger
 from lxml import etree  # noqa: S410
-
 from users_data import call_getter
 
 
