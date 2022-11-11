@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "poetry"
+version = "0.1.0"
+description = ""
+authors = ["mrshirshov18 <shms2003@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "1.0.0"
+pygments = "^2.13.0"
+colorama = "^0.4.6"
+cowpy = "^1.1.5"
+pytz = "^2022.6"
+safety = "^2.3.1"
+argparse = "^1.4.0"
+safety-cli = "^0.0.4"
+safety-db = "^2021.7.17"
+dependency-injector = "^4.40.0"
+pipeline = "^0.1.0"
+flake8 = "^5.0.4"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^5.0.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
