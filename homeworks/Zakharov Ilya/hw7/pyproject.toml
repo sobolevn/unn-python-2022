@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "testt"
+version = "0.1.0"
+description = ""
+authors = ["AirRomantic <ilyair2003@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+loguru = "^0.6.0"
+cowpy = "^1.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

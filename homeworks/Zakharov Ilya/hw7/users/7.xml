@@ -1,0 +1,27 @@
+<User>
+	<id>7</id>
+	<email>Telly.Hoeger@billy.biz</email>
+	<posts>
+		<post>
+			<id>7</id>
+			<title>magnam facilis autem</title>
+			<body>dolore placeat quibusdam ea quo vitae
+magni quis enim qui quis quo nemo aut saepe
+quidem repellat excepturi ut quia
+sunt ut sequi eos ea sed quas</body>
+		</post>
+	</posts>
+	<albums>
+		<album>
+			<id>7</id>
+			<title>quibusdam autem aliquid et et quia</title>
+		</album>
+	</albums>
+	<todos>
+		<todo>
+			<id>7</id>
+			<title>illo expedita consequatur quia in</title>
+			<completed>False</completed>
+		</todo>
+	</todos>
+</User>

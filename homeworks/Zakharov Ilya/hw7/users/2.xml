@@ -1,0 +1,27 @@
+<User>
+	<id>2</id>
+	<email>Shanna@melissa.tv</email>
+	<posts>
+		<post>
+			<id>2</id>
+			<title>qui est esse</title>
+			<body>est rerum tempore vitae
+sequi sint nihil reprehenderit dolor beatae ea dolores neque
+fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis
+qui aperiam non debitis possimus qui neque nisi nulla</body>
+		</post>
+	</posts>
+	<albums>
+		<album>
+			<id>2</id>
+			<title>sunt qui excepturi placeat culpa</title>
+		</album>
+	</albums>
+	<todos>
+		<todo>
+			<id>2</id>
+			<title>quis ut nam facilis et officia qui</title>
+			<completed>False</completed>
+		</todo>
+	</todos>
+</User>
