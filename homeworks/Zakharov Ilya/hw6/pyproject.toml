@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pack"
+version = "0.1.0"
+description = ""
+authors = ["AirRomantic <ilyair2003@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+colorama = "^0.4.6"
+cowpy = "^1.1.5"
+pytz = "^2022.5"
+argparse = "^1.4.0"
+datetime = "^4.7"
+
+
+[tool.poetry.group.dev.dependencies]
+safety = "^2.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

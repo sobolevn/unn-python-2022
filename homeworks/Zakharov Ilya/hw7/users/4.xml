@@ -1,0 +1,27 @@
+<User>
+	<id>4</id>
+	<email>Julianne.OConner@kory.org</email>
+	<posts>
+		<post>
+			<id>4</id>
+			<title>eum et est occaecati</title>
+			<body>ullam et saepe reiciendis voluptatem adipisci
+sit amet autem assumenda provident rerum culpa
+quis hic commodi nesciunt rem tenetur doloremque ipsam iure
+quis sunt voluptatem rerum illo velit</body>
+		</post>
+	</posts>
+	<albums>
+		<album>
+			<id>4</id>
+			<title>non esse culpa molestiae omnis sed optio</title>
+		</album>
+	</albums>
+	<todos>
+		<todo>
+			<id>4</id>
+			<title>et porro tempora</title>
+			<completed>True</completed>
+		</todo>
+	</todos>
+</User>
