@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "csv_request_xml"
+version = "0.1.0"
+description = ""
+authors = ["relby <kudinov.nikita@gmail.com>"]
+readme = "README.md"
+packages = [{include = "csv_request_xml"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+loguru = "^0.6.0"
+lxml = "^4.9.1"
+httpx = "^0.23.1"
+
+[tool.poetry.scripts]
+start = "csv_request_xml.__main__:main"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.982"
+types-requests = "^2.28.11.2"
+wemake-python-styleguide = "^0.17.0"
+isort = "^5.10.1"
+lxml-stubs = "^0.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
