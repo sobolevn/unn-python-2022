@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Final
 
-from basic import basic
+from async_basic import basic
 from loguru import logger
 
 
