@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "7"
+version = "0.1.0"
+description = ""
+authors = ["DanYunin <daniilunin2002@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "hw_7"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
