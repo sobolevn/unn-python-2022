@@ -1,8 +1,9 @@
-import json
 import asyncio
-from loguru import logger
+import json
 
 from downloadjson import req_get_data, req_get_user_todo
+from loguru import logger
+
 
 async def get_list_id(url, mails):
     """
@@ -35,9 +36,10 @@ async def all_load_user_data(url, users):
     """
     logger.info('Users to parse {0}'.format(users))
     dictionary = {}
-    rezulty = await asyncio.gather(*[_load_user_todo(url, key, users[key]) for key in users.keys()],return_exceptions=True)
-    i = 0;
-    for key in users.keys():
-        dictionary[key] = rezulty[i]
-        i+=1
-    return dictionary;
+    results_utodo = await asyncio.gather(
+        *[_load_user_todo(url, key, users[key]) for key in users.keys()],
+        return_exceptions=True,
+    )
+    for index, key in enumerate(users.keys()):
+        dictionary[key] = results_utodo[index]
+    return dictionary

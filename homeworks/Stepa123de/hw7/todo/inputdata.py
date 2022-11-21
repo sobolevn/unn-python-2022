@@ -1,6 +1,7 @@
 import asyncio
 import csv
 from xml.etree import ElementTree as Et  # noqa: S405
+
 import aiofiles
 from loguru import logger
 
@@ -14,7 +15,6 @@ def read_data(filename):
     logger.debug('Open {0}'.format(filename))
     with open(filename) as csvfile:
         datareader = csv.reader(csvfile, delimiter=',', quotechar='"')
-        print("good")
         umail = []
         for row in datareader:
             for enty in row:
@@ -29,7 +29,13 @@ async def all_save_user_data(userdata, users, urldir):
 
     Use for each user method _save_user_data.
     """
-    await asyncio.gather(*[_save_user_data(userdata[key], key, users[key], urldir) for key in users.keys()],return_exceptions=True)
+    await asyncio.gather(
+        *[
+            _save_user_data(userdata[key], key, users[key], urldir)
+            for key in users.keys()
+        ],
+        return_exceptions=True,
+    )
 
 
 async def _save_user_data(jsdata, uid, email, urldir):  # noqa: WPS210
@@ -52,6 +58,9 @@ async def _save_user_data(jsdata, uid, email, urldir):  # noqa: WPS210
 async def _save_in_file(mainel, uid, urldir):
     tree = Et.ElementTree(mainel)
     Et.indent(tree)
-    async with aiofiles.open('{0}\\{1}.xml'.format(urldir, uid), 'wb') as xml_file:
-       tree.write(xml_file, encoding='utf-8', xml_declaration=True)
+    async with aiofiles.open(
+        '{0}/{1}.xml'.format(urldir, uid),
+        'wb',
+    ) as xml_file:
+        tree.write(xml_file, encoding='utf-8', xml_declaration=True)
     logger.debug('User id: {0} Saved'.format(uid))
