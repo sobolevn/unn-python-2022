@@ -58,7 +58,7 @@ async def _save_user_data(jsdata, uid, email, urldir):  # noqa: WPS210
 async def _save_in_file(mainel, uid, urldir):
     tree = Et.ElementTree(mainel)
     Et.indent(tree)
-    async with aiofiles.open(
+    with open(
         '{0}/{1}.xml'.format(urldir, uid),
         'wb',
     ) as xml_file:
