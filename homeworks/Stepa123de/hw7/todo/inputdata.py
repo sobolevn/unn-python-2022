@@ -2,7 +2,6 @@ import asyncio
 import csv
 from xml.etree import ElementTree as Et  # noqa: S405
 
-import aiofiles
 from loguru import logger
 
 
