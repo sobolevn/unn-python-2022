@@ -1,0 +1,45 @@
+[[package]]
+name = "cowpy"
+version = "1.1.5"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
+name = "pygments"
+version = "2.13.0"
+description = "Pygments is a syntax highlighting package written in Python."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+plugins = ["importlib-metadata"]
+
+[[package]]
+name = "pytz"
+version = "2022.5"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.10"
+content-hash = "1c3fc7f6e686f6b2207e512fb4ebcd988685ff043918073aa53bebd057bedc21"
+
+[metadata.files]
+cowpy = [
+    {file = "cowpy-1.1.5-py3-none-any.whl", hash = "sha256:de5ae7646dd30b4936013666c6bd019af9cf411cc3b377c8538cfd8414262921"},
+    {file = "cowpy-1.1.5.tar.gz", hash = "sha256:089172db1d88c30a2e1b741b18945ee84170bd943a3ca71948e4ae3a3255e554"},
+]
+pygments = [
+    {file = "Pygments-2.13.0-py3-none-any.whl", hash = "sha256:f643f331ab57ba3c9d89212ee4a2dabc6e94f117cf4eefde99a0574720d14c42"},
+    {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
+]
+pytz = [
+    {file = "pytz-2022.5-py2.py3-none-any.whl", hash = "sha256:335ab46900b1465e714b4fda4963d87363264eb662aab5e65da039c25f1f5b22"},
+    {file = "pytz-2022.5.tar.gz", hash = "sha256:c4d88f472f54d615e9cd582a5004d1e5f624854a6a27a6211591c251f22a6914"},
+]
