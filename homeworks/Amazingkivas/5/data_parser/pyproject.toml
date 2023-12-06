@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "data-parser"
+version = "0.1.0"
+description = ""
+authors = ["SaveliyBorisov <borisov.talim@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "data_parser"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+loguru = "^0.6.0"
+requests = "^2.28.1"
+lxml = "^4.9.1"
+
+[tool.poetry.group.dev.dependencies]
+wemake-python-styleguide = "^0.17.0"
+
+[tool.poetry.scripts]
+start = "data_parser.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
