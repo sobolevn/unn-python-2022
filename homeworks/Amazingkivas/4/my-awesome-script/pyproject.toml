@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "my-awesome-script"
+version = "0.1.0"
+description = ""
+authors = ["SaveliyBorisov <borisov.talim@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "my_awesome_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+cowpy = "^1.1.5"
+Pygments = "^2.13.0"
+pytz = "^2022.5"
+argparse = "^1.4.0"
+datetime = "^4.7"
+
+[tool.poetry.group.dev.dependencies]
+safety = "^2.3.1"
+Pygments = "^2.13.0"
+wemake-python-styleguide = "^0.17.0"
+
+[tool.poetry.scripts]
+my-awesome-script = "my_awesome_script.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
